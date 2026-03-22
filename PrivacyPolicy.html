@@ -1,0 +1,426 @@
+
+<html lang="en" class="scroll-smooth">
+      <head>
+	  
+    <meta charset="UTF-8">
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <title> Sazafy Web Deployment </title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com">
+	                                           </script>
+    <script src="https://unpkg.com/lucide@latest">
+	                                               </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js">
+	                                                                                 </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
+	                                                                              </script>
+
+    <style>
+	
+		body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: black;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+h2 {
+    font-size: 1.5em;
+    
+	margin-bottom: 20px;
+    color: white;
+	text-align: left;
+	line-height: 3.5;
+}
+
+h3 {
+    font-size: 16px;
+	margin-bottom: 20px;
+    margin-top: 20px;
+    color: white;
+	text-align: left;
+}
+
+h4 {
+    font-size: 32em;
+	margin-bottom: 20px;
+    margin-top: 29px;
+    color: white;
+	text-align: center;
+}
+
+p {
+    margin: 10px 0;
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+li {
+    margin: 5px 0;
+	text-align: left;
+}
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+        body { font-family: 'Poppins', sans-serif; }
+        .glass-panel {
+            background: rgba(13, 59, 102, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+	
+	<!-- Logo of Website -->
+	<link rel="icon" type="image/png" href="https://image2url.com/r2/default/images/1773567981464-dce0c82c-dd70-4952-88a2-4f4d8ff55f5c.jpg">
+	
+</head>
+
+<body class="bg-[#050D18] text-white antialiased overflow-x-hidden selection:bg-[#1E90FF] selection:text-white">
+
+    <!-- 3D Background Canvas -->
+    <canvas id="bg-canvas" class="fixed inset-0 z-[-1] pointer-events-none opacity-60" width="926" height="598" style="width: 926px; height: 598px;"> </canvas>
+
+    <!-- Navigation -->
+    <header class="fixed top-0 w-full z-50 glass-panel border-white/5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer">
+                <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M25 50L50 20L85 35L60 65L25 50Z" fill="url(#grad1)" opacity="0.9"></path>
+                    <path d="M75 50L50 80L15 65L40 35L75 50Z" fill="url(#grad2)" opacity="0.9"></path>
+                    <path d="M40 35L85 20L95 35L60 65L40 35Z" fill="#1E90FF"></path>
+                    <defs>
+                        <linearGradient id="grad1" x1="25" y1="20" x2="85" y2="65" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#1E90FF"></stop>
+                            <stop offset="1" stop-color="#0D3B66"></stop>
+                        </linearGradient>
+                        <linearGradient id="grad2" x1="15" y1="35" x2="75" y2="80" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#22C55E"></stop>
+                            <stop offset="1" stop-color="#0D3B66"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="flex flex-col">
+                    <span class="text-2xl tracking-tight font-semibold text-white leading-none"> SAZAFY </span>
+                    <span class="text-xs font-light text-[#1E90FF] tracking-widest mt-1 uppercase"> Deployment </span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="LandingPage.html" class="text-lg font-light text-gray-300 hover:text-white transition-colors"> Home </a>
+                <a href="LandingPage.html#services" class="text-lg font-light text-gray-300 hover:text-white transition-colors"> services </a>
+                <a href="LandingPage.html#pricing" class="text-lg font-light text-gray-300 hover:text-white transition-colors"> Pricing </a>
+                <a href="LandingPage.html#reviews" class="text-lg font-light text-gray-300 hover:text-white transition-colors"> Reviews </a>
+            </nav>
+            <div class="hidden md:flex items-center gap-6">
+			
+                <!-- Custom Language Dropdown -->
+                <div class="relative group">
+                    <button class="flex gap-2 hover:text-white transition-colors text-lg font-light text-gray-300 gap-x-2 gap-y-2 items-center">
+                        <i data-lucide="globe" stroke-width="1.5" class="w-5 h-5"></i>
+                        <span> EN </span>
+                        <i data-lucide="chevron-down" stroke-width="1.5" class="w-4 h-4 opacity-50"></i>
+                    </button>
+                    <div class="absolute top-full right-0 mt-4 w-40 glass-panel rounded-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                        <div class="flex flex-col gap-1">
+                            <a href="LandingPage.html" class="px-4 py-2 text-lg font-light hover:bg-white/10 rounded-lg transition-colors"> English </a>
+							<a href="#" class="px-4 py-2 text-lg font-light hover:bg-white/10 rounded-lg transition-colors text-gray-500"> Arabic (Soon) </a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="ContactUs.html" class="px-6 py-2.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-lg font-medium transition-all">
+                    Contact Us
+                </a>
+            </div>
+
+   <!-- Mobile Menu Toggle -->
+<button id="menu-btn" class="md:hidden text-white">
+<i data-lucide="menu" class="w-6 h-6"></i>
+</button>
+
+</div> <!-- close nav container -->
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" 
+class="hidden md:hidden absolute top-full left-0 right-0 w-full px-6 pb-6 z-50">
+<div class="bg-[#050D18]/95 backdrop-blur-xl rounded-2xl p-6 flex flex-col gap-4 mt-4 border border-white/10 shadow-2xl shadow-black/50">
+<a href="LandingPage.html" class="text-lg text-gray-300 hover:text-white py-2">Home</a>
+<a href="LandingPage.html#services" class="text-lg text-gray-300 hover:text-white py-2">Services</a>
+<a href="LandingPage.html#pricing" class="text-lg text-gray-300 hover:text-white py-2">Pricing</a>
+<a href="LandingPage.html#reviews" class="text-lg text-gray-300 hover:text-white py-2">Reviews</a>
+
+<a href="contactUs.html"
+class="mt-4 px-6 py-3 rounded-full bg-white/10 text-center hover:bg-white/20 transition text-white">
+Contact Us
+</a>
+</div>
+</div>
+		  
+        </div>
+    </header>
+
+  <!-- Hero Section -->
+    <section class="relative pt-40 pb-10 md:pt-52 md:pb-12 px-6 overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10 gs-reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-8 border border-[#1E90FF]/30">
+                <span class="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse"></span>
+                <span class="text-sm font-light text-gray-200"> Building Scalable Digital Experiences </span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl tracking-tight font-semibold mb-8 leading-[1.1]">
+                Privacy Policy <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#1E90FF] via-[#00B4D8] to-[#22C55E]">
+                   of Our Company
+                </span>
+            </h1>
+			
+			 <p class="text-xl md:text-2xl font-light text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
+                At <strong> sazafy </strong>, we take your privacy and data security seriously. We value the trust you place in us
+				and are committed to protecting your personal information while ensuring a secure experience with our products and services.</p>
+        </div>
+            
+			  <!-- Policy Paragraphs -->
+
+			 <div class="container">
+			
+        <h1 class="text-5xl  font-semibold mb-8 "> PRIVACY POLICY </h1>
+        
+        <section>
+		
+            <h3 class="text-3xl text-align:let font-semibold mb-8 mt-8"> 1. Your Privacy Matters to Us </h3>
+			
+            <p> We understand the importance of privacy and your desire not to receive unwanted communications. We respect your right to control your personal data and have designed this policy to explain: </p>
+            <ul>
+                <li>  • What information we collect</li>
+                <li>  • How it is used</li>
+                <li>  • How your data remains secure</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3 class="text-3xl text-align:let font-semibold mb-8 mt-8"> 2. Information We Collect & How We Use It</h3>
+            <p> When you purchase our plugins, your <strong> financial information </strong> is not handled by us directly. Instead, <strong> all payments are securely processed </strong> through trusted third-party payment gateways <strong> —<em>PayPal</em> and <em>Stripe</em>. </strong> </p>
+            <p>We collect and store the following minimal data:</p>
+            <ul>
+                <li><strong> • Your name and email address</strong> – Used for order identification, license generation, and support.</li>
+                <li><strong> • Feedback form data</strong> – Used to improve product quality, user experience, and documentation.</li>
+                <li><strong> • Deactivation feedback</strong> – Helps us enhance plugin features and resolve user pain points.</li>
+            </ul>
+            <p> All customers are assigned an anonymized <em> nickname </em> for support purposes. No sensitive financial data is stored or visible to us.</p>
+    </section>
+	
+	<section>
+            <h3 class="text-3xl text-align:let font-semibold mb-8 mt-8"> 3. Payment Security </h3>
+            <p> Your payment details (credit/debit card numbers, etc.) are handled exclusively by: </p>
+            <ul>
+                <li><strong> • Stripe </strong> – https://www.stripe.com </li>
+				<li><strong> • Paypal </strong> – https://www.paypal.com </li>
+				<li><strong> • payoneer </strong> – https://www.payoneer.com </li>
+            </ul>
+            <p> These platforms are globally trusted and equipped with advanced fraud protection and encryption technologies. Jcodex only receives confirmation of the transaction—not your card or financial credentials.
+                </p>
+    </section>
+	
+		<section>
+            <h3 class="text-3xl text-align:let font-semibold mb-8 mt-8"> 4. Summary </h3>
+            <p> Your payment details (credit/debit card numbers, etc.) are handled exclusively by: </p>
+            <ul>
+                <li> • We collect only the data necessary to deliver and improve our services </li>
+                <li> • We <strong> do not store </strong> or process personal financial information </li>
+				<li> • We <strong> do not track or collect </strong> any analytics or sensitive data from your website </li>
+				<li> • We abide by all applicable data privacy regulations, including GDPR-compliant practices
+                <li> • Your trust is important to us, and we are committed to maintaining it through transparency and ethical data handling practices. </li>
+            </ul>
+        </div>
+    </section>
+	           </Section>
+	
+	 <!-- Footer -->
+    <footer class="border-t border-white/5 bg-[#030912] pt-6 pb-8 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3 opacity-80">
+                <i data-lucide="code" stroke-width="1.5" class="w-6 h-6 text-[#1E90FF]">
+				</i>
+                <span class="text-xm tracking-tight font-small"> SAZAFY. </span> <br>
+				<span class="text-sm font-light text-gray-500"> Powered by Sameer </span>
+            </div>
+            
+            <div class="flex gap-8">
+                <a href="PrivacyPolicy.html" class="text-sm font-light text-gray-400 hover:text-white transition-colors"> Privacy Policy </a>
+                <a href="TermsCondition.html" class="text-sm font-light text-gray-400 hover:text-white transition-colors"> Terms of Service </a>
+                <a href="FAQ's.html" class="text-sm font-light text-gray-400 hover:text-white transition-colors"> FAQ's </a>
+                <a href="AboutUs.html" class="text-sm font-light text-gray-400 hover:text-white transition-colors"> About Us </a>            
+			</div>
+            
+            <p class="text-sm font-light text-gray-500"> © 2026 Sazafy Web Development <br> All rights reserved  </p>
+        </div>
+    </footer>
+   
+   <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-[#050D18]/80', 'shadow-lg', 'shadow-black/20');
+                nav.classList.remove('border-b-0');
+            } else {
+                nav.classList.remove('bg-[#050D18]/80', 'shadow-lg', 'shadow-black/20');
+                nav.classList.add('border-b-0');
+            }
+        });
+
+        // GSAP Scroll Animations
+        const revealElements = document.querySelectorAll('.gs-reveal');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    gsap.fromTo(entry.target, 
+                        { y: 50, opacity: 0 }, 
+                        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+                    );
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => {
+            el.style.opacity = "0";
+            observer.observe(el);
+        });
+
+        // Three.js 3D Animated Background (Subtle Particles)
+        const initThreeJS = () => {
+            const canvas = document.getElementById('bg-canvas');
+            const scene = new THREE.Scene();
+            
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 30;
+
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Particles
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 700;
+            const posArray = new Float32Array(particlesCount * 3);
+
+            for(let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 100;
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.15,
+                color: '#1E90FF',
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+
+            const particlesMesh = new THREE.Points(particlesGeometry, material);
+            scene.add(particlesMesh);
+
+            // Mouse Interaction
+            let mouseX = 0;
+            let mouseY = 0;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = event.clientX / window.innerWidth - 0.5;
+                mouseY = event.clientY / window.innerHeight - 0.5;
+            });
+
+            const clock = new THREE.Clock();
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                const elapsedTime = clock.getElapsedTime();
+
+                particlesMesh.rotation.y = elapsedTime * 0.05;
+                particlesMesh.rotation.x = elapsedTime * 0.02;
+
+                // Subtle parallax on mouse move
+                camera.position.x += (mouseX * 5 - camera.position.x) * 0.02;
+                camera.position.y += (-mouseY * 5 - camera.position.y) * 0.02;
+                camera.lookAt(scene.position);
+
+                renderer.render(scene, camera);
+            };
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        };
+
+        // Initialize 3D bg after load
+        window.addEventListener('load', initThreeJS);
+		
+// Mobile Menu Toggle
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+menuBtn.addEventListener('click', () => {
+mobileMenu.classList.toggle('hidden');
+});
+
+// Close menu when click link
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+link.addEventListener('click', () => {
+mobileMenu.classList.add('hidden');
+});
+});
+		
+	</script>
+	
+</body>
+
+</html>
